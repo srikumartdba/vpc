@@ -1,12 +1,9 @@
 provider "aws" {
-  region = "us-east-1"
-  
+  region = "your_aws_region"
 }
 
-resource "aws_vpc" "project-vpc" {
-  cidr_block = "10.0.0.0/16"
-}
+data "aws_vpcs" "existing_vpcs" {}
 
-output "vpc_id" {
-  value = aws_vpc.project-vpc.id
+output "vpc_ids" {
+  value = data.aws_vpcs.existing_vpcs.ids
 }
